@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Datos Enviados</title>
+    <link rel="stylesheet" href="Style.css">
+</head>
+<body>
+    <header class="barra">
+        <h1 style="color: white; font-family: 'Arial', sans-serif;">Datos del Pedido</h1>
+    </header>
+    <main>
+        <section style="padding: 3rem; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">
+            <h2 style="text-align: center; color: #d67400;">Detalles del Pedido</h2>
+            <form>
+                <p><strong>Nombre del Mesero:</strong> <input type="text" value="<?php echo htmlspecialchars($_GET['Mesero_Nombre']); ?>" readonly></p>
+                <p><strong>Número de Mesa:</strong> <input type="text" value="<?php echo htmlspecialchars($_GET['Mesa_Nombre']); ?>" readonly></p>
+                <p><strong>Propina:</strong> <input type="text" value="<?php echo htmlspecialchars($_GET['Orden_Propina']); ?>" readonly></p>
+                <p><strong>Nombre del Producto:</strong> <input type="text" value="<?php echo htmlspecialchars($_GET['Producto_Nombre']); ?>" readonly></p>
+            </form>
+            <button onclick="window.history.back()">Volver</button>
+        </section>
+    </main>
+    <footer>
+        <p>Desarrollado por: Grupo 3</p>
+        <p>2024</p>
+    </footer>
+</body>
+</html>
