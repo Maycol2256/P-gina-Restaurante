@@ -1,0 +1,61 @@
+CREATE DATABASE Restaurante
+    DEFAULT CHARACTER SET = 'utf8mb4';
+
+USE Restaurante;
+
+CREATE TABLE Mesero (
+    Mesero_ID INT(10) PRIMARY KEY AUTO_INCREMENT,
+    Mesero_Nombre VARCHAR(20)
+);
+
+CREATE TABLE Mesas (
+    Mesa_ID INT(10) PRIMARY KEY AUTO_INCREMENT,
+    Mesa_Nombre VARCHAR(15)
+);
+
+CREATE TABLE Tipo_Cliente (
+    TipoCliente_ID INT(10) PRIMARY KEY AUTO_INCREMENT,
+    TipoCliente_Tipo VARCHAR(20)
+);
+
+CREATE TABLE Tipo_Producto (
+    TipoProducto_ID INT(10) PRIMARY KEY AUTO_INCREMENT,
+    TipoProducto_Nombre VARCHAR(20)
+);
+
+CREATE TABLE CategoriaProducto (
+    CategoriaProducto_ID INT(10) PRIMARY KEY AUTO_INCREMENT,
+    CategoriaProducto_Nombre VARCHAR(20)
+);
+CREATE TABLE Orden (
+    Orden_ID INT(10) PRIMARY KEY AUTO_INCREMENT,
+    Orden_Fecha DATETIME,
+    Orden_Propina DECIMAL(5, 2),
+    Mesas_ID INT(10),
+    Meseros_ID INT(10),
+    TiCliente_ID INT(10),
+    FOREIGN KEY (Mesas_ID) REFERENCES MESAS (Mesa_ID),
+    FOREIGN KEY (Meseros_ID) REFERENCES MESERO (Mesero_ID),
+    FOREIGN KEY (TiCliente_ID) REFERENCES TIPO_CLIENTE (TipoCliente_ID) 
+);
+
+CREATE TABLE Producto (
+    Producto_ID INT(10) PRIMARY KEY AUTO_INCREMENT,
+    Producto_Nombre VARCHAR(20),
+    Producto_Costo DECIMAL(5, 2),
+    Producto_Precio DECIMAL(5, 2),
+    CatProducto_ID INT(10),
+    TipProducto_ID INT(10), 
+    FOREIGN KEY (CatProducto_ID) REFERENCES CATEGORIAPRODUCTO (CategoriaProducto_ID),
+    FOREIGN KEY (TipProducto_ID) REFERENCES TIPO_PRODUCTO (TipoProducto_ID) 
+);
+
+
+
+CREATE TABLE Pedido (
+    Pedido_ID INT(10) PRIMARY KEY AUTO_INCREMENT,
+    Ord_ID INT(10),
+    Prod_ID INT(10),
+    FOREIGN KEY (Ord_ID) REFERENCES ORDEN (Orden_ID),
+    FOREIGN KEY (Prod_ID) REFERENCES PRODUCTO (Producto_ID)
+);
